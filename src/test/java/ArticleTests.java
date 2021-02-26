@@ -45,7 +45,7 @@ public class ArticleTests extends BaseTest {
                 .spec(RequestSpecs.generateToken())
                 .body(testArticle)
                 .post(resourcePath)
-            .then()
+                .then()
                 .statusCode(200)
                 .spec(ResponseSpecs.defaultSpec());
     }
@@ -55,7 +55,7 @@ public class ArticleTests extends BaseTest {
 
         given()
                 .spec(RequestSpecs.generateToken())
-            .delete(resourcePath + "/" + createdArticle.toString())
+                .delete(resourcePath + "/" + createdArticle.toString())
                 .then()
                 .statusCode(200)
                 .spec(ResponseSpecs.defaultSpec());
@@ -70,7 +70,7 @@ public class ArticleTests extends BaseTest {
                 .spec(RequestSpecs.generateFakeToken())
                 .body(testArticle)
                 .post(resourcePath)
-            .then()
+                .then()
                 .statusCode(401)
                 .spec(ResponseSpecs.defaultSpec());
     }
@@ -79,7 +79,7 @@ public class ArticleTests extends BaseTest {
     public void Test_Articles_Schema(){
         Response response = given()
                 .spec(RequestSpecs.generateToken())
-            .get(resourcePath + "s");
+                .get(resourcePath + "s");
 
         assertThat(response.asString(), matchesJsonSchemaInClasspath("articles.schema.json"));
         assertThat(response.path("results[0].data[0].id"),equalTo(802));
